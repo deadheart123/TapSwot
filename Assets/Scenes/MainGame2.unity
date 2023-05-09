@@ -531,8 +531,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 147.43729, y: -223.45453}
-  m_SizeDelta: {x: 732.85, y: 89.6892}
+  m_AnchoredPosition: {x: 140.93988, y: -181.87006}
+  m_SizeDelta: {x: 719.855, y: 172.8582}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &11020481
 MonoBehaviour:
@@ -1746,7 +1746,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 296, y: 291}
+  m_AnchoredPosition: {x: 157, y: 324.33}
   m_SizeDelta: {x: 1027.7, y: 431.3442}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &67434679
@@ -4750,7 +4750,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Current Turn:'
+  m_text: 'CURENT TURN: '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4759,8 +4759,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4777,10 +4777,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30.25
-  m_fontSizeBase: 40
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -7985,7 +7985,6 @@ RectTransform:
   - {fileID: 1653114771}
   - {fileID: 972698626}
   - {fileID: 534317666}
-  - {fileID: 1495596258}
   - {fileID: 620549354}
   - {fileID: 616328081}
   - {fileID: 2043736388}
@@ -10676,7 +10675,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -170.4}
+  m_AnchoredPosition: {x: 10, y: -189}
   m_SizeDelta: {x: 400, y: 30}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &525349629
@@ -10931,7 +10930,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &534317666
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10948,6 +10947,7 @@ RectTransform:
   - {fileID: 1094601839426101572}
   - {fileID: 1503105553}
   - {fileID: 1164737886}
+  - {fileID: 1495596258}
   m_Father: {fileID: 396764703}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11501,7 +11501,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -7, y: 265}
+  m_AnchoredPosition: {x: 0, y: 309}
   m_SizeDelta: {x: 709.9658, y: 486.6185}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &553609003
@@ -17662,7 +17662,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Time Limit: Not Set'
+  m_text: 'Total Time Limit:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 262b2635ce125ae4d9d2498c257e720d, type: 2}
   m_sharedMaterial: {fileID: -8059178355782199316, guid: 262b2635ce125ae4d9d2498c257e720d, type: 2}
@@ -19258,8 +19258,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000019073486, y: 54.235527}
-  m_SizeDelta: {x: 593.2087, y: 138.0519}
+  m_AnchoredPosition: {x: -0.00084972, y: 73.0083}
+  m_SizeDelta: {x: 593.21, y: 100.5063}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &993481229
 MonoBehaviour:
@@ -19281,7 +19281,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <font-weight=900>Wait for other player...
+  m_text: <font-weight=900>Waiting for other player's turn to finish
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 262b2635ce125ae4d9d2498c257e720d, type: 2}
   m_sharedMaterial: {fileID: -8059178355782199316, guid: 262b2635ce125ae4d9d2498c257e720d, type: 2}
@@ -19308,7 +19308,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48
+  m_fontSize: 39.85
   m_fontSizeBase: 48
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -22600,7 +22600,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 2.1172485, y: 70.2146}
+  m_AnchoredPosition: {x: 2.1172485, y: 103.38464}
   m_SizeDelta: {x: 120, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1164737887
@@ -24105,8 +24105,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -11.998047, y: 128.96252}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -6.8840027, y: 125.314026}
+  m_SizeDelta: {x: 149.77, y: 37.297}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1258856510
 MonoBehaviour:
@@ -24249,8 +24249,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 31.7981, y: 0.9743}
-  m_SizeDelta: {x: 646.2998, y: 78.0632}
+  m_AnchoredPosition: {x: 25.300516, y: 0.000038146973}
+  m_SizeDelta: {x: 633.3047, y: 153.435}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1262493596
 MonoBehaviour:
@@ -24272,7 +24272,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <font-weight=900> select any card to replace from here
+  m_text: <font-weight=900> Please drag and drop any folded card to the empty slot
+    to reveal it's details
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 262b2635ce125ae4d9d2498c257e720d, type: 2}
   m_sharedMaterial: {fileID: -8059178355782199316, guid: 262b2635ce125ae4d9d2498c257e720d, type: 2}
@@ -25384,7 +25385,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 17, y: 46}
+  m_AnchoredPosition: {x: 2.7895, y: 73.493}
   m_SizeDelta: {x: 482.3313, y: 72.5695}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1332663550
@@ -26425,7 +26426,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <font-weight=900>then select any card to replace.
+  m_text: <font-weight=900>Please select the card for your empty slot
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 262b2635ce125ae4d9d2498c257e720d, type: 2}
   m_sharedMaterial: {fileID: -8059178355782199316, guid: 262b2635ce125ae4d9d2498c257e720d, type: 2}
@@ -29639,7 +29640,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.49803922}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.49803922}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -29854,13 +29855,13 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1683460977}
-  m_Father: {fileID: 396764703}
+  m_Father: {fileID: 534317666}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -82.7688, y: 153}
-  m_SizeDelta: {x: 161.5413, y: 302.075}
+  m_AnchoredPosition: {x: -76.711, y: 33.9121}
+  m_SizeDelta: {x: 75, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1503105552
 GameObject:
@@ -29900,7 +29901,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.1172485, y: -20.763794}
+  m_AnchoredPosition: {x: 2.1172485, y: 12.40625}
   m_SizeDelta: {x: 120, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1503105554
@@ -32370,8 +32371,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000022888184, y: 2.6605377}
-  m_SizeDelta: {x: 593.2087, y: 115.7111}
+  m_AnchoredPosition: {x: -3.3959, y: -24.409}
+  m_SizeDelta: {x: 600, y: 94.328}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1636982766
 MonoBehaviour:
@@ -32393,10 +32394,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '<font-weight=700>You can also review any card on
-
-    your hand or in
-    the discard pile.'
+  m_text: Please wait until it's your turn.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 262b2635ce125ae4d9d2498c257e720d, type: 2}
   m_sharedMaterial: {fileID: -8059178355782199316, guid: 262b2635ce125ae4d9d2498c257e720d, type: 2}
@@ -32429,9 +32427,9 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 12
   m_fontSizeMax: 32
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -33464,7 +33462,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1683460976}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -3.3466923}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -33474,8 +33472,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -3.114, y: 81}
-  m_SizeDelta: {x: 144.4124, y: 50}
+  m_AnchoredPosition: {x: 0.0000038146973, y: 25}
+  m_SizeDelta: {x: 75, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1683460978
 MonoBehaviour:
@@ -35765,11 +35763,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2465888562845896287, guid: 84032701b6e3e8a4ea630a1ded3e8ef2, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 280
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2465888562845896287, guid: 84032701b6e3e8a4ea630a1ded3e8ef2, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 240
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2465888562845896287, guid: 84032701b6e3e8a4ea630a1ded3e8ef2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -36425,7 +36423,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 14.208803, y: -21.572447}
+  m_AnchoredPosition: {x: -0.000024796, y: 0.000041962}
   m_SizeDelta: {x: 476.75, y: 93.3859}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1821132938
@@ -36448,7 +36446,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <font-weight=700>Pick one of your card to discard.
+  m_text: Drag and drop the card you wish to discard in the discarded deck
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 262b2635ce125ae4d9d2498c257e720d, type: 2}
   m_sharedMaterial: {fileID: -8059178355782199316, guid: 262b2635ce125ae4d9d2498c257e720d, type: 2}
@@ -38150,7 +38148,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <font-weight=900>TIME ELPASED
+  m_text: <font-weight=900>TIME REMAINING
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 262b2635ce125ae4d9d2498c257e720d, type: 2}
   m_sharedMaterial: {fileID: -8059178355782199316, guid: 262b2635ce125ae4d9d2498c257e720d, type: 2}
@@ -40869,10 +40867,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '<font-weight=500>Each player take turns to discard and pick up one card
-    until all cards in the pack have been used.
-
-'
+  m_text: <font-weight=500>Each player take turns to discard one of their own cards
+    and picking up a card until the remaining deck of cards is empty.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 262b2635ce125ae4d9d2498c257e720d, type: 2}
   m_sharedMaterial: {fileID: -8059178355782199316, guid: 262b2635ce125ae4d9d2498c257e720d, type: 2}
@@ -40899,10 +40895,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22
+  m_fontSize: 19.8
   m_fontSizeBase: 22
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 14
   m_fontSizeMax: 22
   m_fontStyle: 0
@@ -46137,7 +46133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1094601840174368090, guid: 5c5a204de591f264b9dbd36646ac10a6, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -145.17004
+      value: -112
       objectReference: {fileID: 0}
     - target: {fileID: 1094601840174368090, guid: 5c5a204de591f264b9dbd36646ac10a6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
