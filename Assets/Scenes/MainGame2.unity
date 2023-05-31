@@ -19227,7 +19227,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Time Limit: Not Set'
+  m_text: 'Reference Duration: Not Set'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 262b2635ce125ae4d9d2498c257e720d, type: 2}
   m_sharedMaterial: {fileID: -8059178355782199316, guid: 262b2635ce125ae4d9d2498c257e720d, type: 2}
@@ -19254,10 +19254,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22
+  m_fontSize: 21.85
   m_fontSizeBase: 22
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -39862,7 +39862,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <font-weight=900>TIME REMAINING
+  m_text: <font-weight=900>SESSION TIME
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 262b2635ce125ae4d9d2498c257e720d, type: 2}
   m_sharedMaterial: {fileID: -8059178355782199316, guid: 262b2635ce125ae4d9d2498c257e720d, type: 2}
