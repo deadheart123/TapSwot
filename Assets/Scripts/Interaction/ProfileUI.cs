@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class ProfileUI : MonoBehaviour
@@ -14,10 +15,19 @@ public class ProfileUI : MonoBehaviour
     *
     */
 
+    // Condition Check
+    [SerializeField] private TMP_InputField usernameInput;
+
+    // UI
     [SerializeField] private bool isCreated;
     [SerializeField] private TMP_Text ProfileTitle;
     [SerializeField] private GameObject Backbtn;
+    [SerializeField] private Button ProceedButton;
     [SerializeField] private TMP_Text ProceedbtnText;
+    [SerializeField] private GameObject warningMsg;
+    [SerializeField] private GameObject okMsg;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +36,33 @@ public class ProfileUI : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        CheckUsername();
+        CheckCreateStatus();
+    }
+
+    public void CheckUsername()
+    {
+        if(usernameInput.text == "")
+        {
+            ProceedButton.interactable = false;
+            warningMsg.SetActive(true);
+            okMsg.SetActive(false);
+        }
+        else
+        {
+            ProceedButton.interactable = true;
+            warningMsg.SetActive(false);
+            okMsg.SetActive(true);
+        }
+    }
+
+    public void AlreadyCreate()
+    {
+        isCreated = true;
+    }
+
+    public void CheckCreateStatus()
     {
         if(isCreated == true)
         {
@@ -39,10 +76,5 @@ public class ProfileUI : MonoBehaviour
             ProceedbtnText.text = "<font-weight=900>CREATE PROFILE";
             Backbtn.SetActive(false);
         }
-    }
-
-    public void AlreadyCreate()
-    {
-        isCreated = true;
     }
 }
