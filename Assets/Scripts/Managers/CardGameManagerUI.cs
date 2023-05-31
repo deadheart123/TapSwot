@@ -427,8 +427,9 @@ public class CardGameManagerUI : MonoBehaviour
 
     public void TakeScreenshot()
     {
-        string guid = Guid.NewGuid().ToString();
-        string fileName = "TAP_SWOT_FinalCards_" + guid;
+        // string guid = Guid.NewGuid().ToString();
+        DateTime dt = DateTime.Now;
+        string fileName = "TAPswot_" + dt.ToString();
         fileName = fileName.Replace("-", "_");
         StartCoroutine(CutSpriteFromScreen(fileName));
     }
