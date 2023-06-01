@@ -18,8 +18,8 @@ public class OtherTurnSelfCheck : MonoBehaviour
     {
         if (!isFirstTimeSHowingWaitForTurn)
         {
-            infoText.text = "<font-weight=900>This stage of the game is now started, please wait until it is your turn";
-            desc.text = "";
+            infoText.text = "<font-weight=900>This stage of the game is now started.";
+            desc.text = "Please wait until it is your turn.";
 
             isFirstTimeSHowingWaitForTurn = true;
         }

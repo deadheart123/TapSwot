@@ -62,6 +62,10 @@ public class CardGameManagerUI : MonoBehaviour
     public TMPro.TMP_Dropdown SWOTDropdown;
     public TMPro.TMP_InputField newCardTitle, newCardSubTitle, newCardDescription;
 
+    [Header("Help Screen")]
+    public GameObject HELP_Setup;
+    public GameObject HELP_RoundOne, HELP_RoundTwo, HELP_RoundTwoEnd, HELP_RoundThree, HELP_RoundFour;
+
     private void Awake()
     {
         instance = this;
@@ -128,6 +132,8 @@ public class CardGameManagerUI : MonoBehaviour
         {
             DisableAllHelperEmojisOfRoundOne();
             ConfirmReplace.SetActive(true);
+            ItsYourTurn.SetActive(false);
+            WaitForOtherPlayer.SetActive(false);
         }
         if (CardGameManager.instance.GetGameState() == GameStateEnum.ROUND_TWO_END)
         {
@@ -168,6 +174,11 @@ public class CardGameManagerUI : MonoBehaviour
             StageThreeWaitForTurn.SetActive(false);
             PlayerManager.instance.myPlayer.EnableKeepCardButton();
         }
+        else if(CardGameManager.instance.GetGameState() == GameStateEnum.ROUND_TWO)
+        {
+            NewCardHelper.SetActive(true);
+            WaitForOtherPlayer.SetActive(false);
+        }
         else
         {
             DisableAllHelperEmojisOfRoundOne();
@@ -195,12 +206,12 @@ public class CardGameManagerUI : MonoBehaviour
         if (PhotonNetwork.IsMasterClient)
         {
             if (MoveToNextStage != null)
-                MoveToNextStage.SetActive(true);
+                MoveToNextStage.GetComponent<Button>().interactable = true;
         }
         else
         {
             if (MoveToNextStage != null)
-                MoveToNextStage.SetActive(false);
+                MoveToNextStage.GetComponent<Button>().interactable = false;
         }
     }
     public void ShowWaitForTurn()
@@ -236,7 +247,7 @@ public class CardGameManagerUI : MonoBehaviour
         }
 
         if(MoveToNextStage!=null)
-            MoveToNextStage.SetActive(false);
+            MoveToNextStage.GetComponent<Button>().interactable = false;
     }
 
     public List<Transform> VotingCardHolders = new List<Transform>();
@@ -288,13 +299,21 @@ public class CardGameManagerUI : MonoBehaviour
         switch (currentGameState)
         {
             case GameStateEnum.SETUP:
-                CurrentRoundText.text = "Stage 1";
+                CurrentRoundText.text = "Setup";
                 break;
             case GameStateEnum.ROUND_ONE:
-                CurrentRoundText.text = "Stage 2";//card selection from remaining
+                CurrentRoundText.text = "Stage 1";//card selection from remaining
+                CurrentObjective.text = "Judge the products";
+                CurrentStageDescription.text = "Each player take turns to discard and pick up one card until all cards in the pack have been used.";
                 break;
             case GameStateEnum.ROUND_TWO:
-                NewCardHelper.SetActive(true);
+                CurrentRoundText.text = "Bonus Stage";
+                CurrentObjective.text = "Shortlist the products";
+                CurrentStageDescription.text = "Player may swap one of your card to your custom card.";
+                HELP_RoundOne.SetActive(false);
+                HELP_RoundTwo.SetActive(true);
+                Stage1HelpWindow.SetActive(true);
+                //NewCardHelper.SetActive(true);
                 NewCardSkipButton.SetActive(true);
                 NewCardDialog.SetActive(false);
                 //disable drag on all cards (discarded, card slots, remaining)
@@ -317,7 +336,13 @@ public class CardGameManagerUI : MonoBehaviour
                 NewCardHelper.SetActive(false);
                 NewCardSkipButton.SetActive(false);
                 NewCardDialog.SetActive(false);
-                CurrentRoundText.text = "Stage 3";//ranking + select from pile
+                CurrentRoundText.text = "Stage 2";//ranking + select from pile
+                CurrentObjective.text = "Shortlist the products";
+                CurrentStageDescription.text = "Score your personal final 5 cards from 1 (most important) to 5 (least important).";
+                HELP_RoundTwo.SetActive(false);
+                HELP_RoundTwoEnd.SetActive(true);
+                Stage1HelpWindow.SetActive(true);
+                
                 cardRankingAndActions_1.SetActive(true);
                 remaingingDeckGameObject.SetActive(false); //rankin + select from discarded pile
                 rankingRound = true;
@@ -338,7 +363,12 @@ public class CardGameManagerUI : MonoBehaviour
                 break;
             case GameStateEnum.ROUND_THREE:
                 rankingRound = false;
-                CurrentRoundText.text = "Stage 4"; // joker(new card) + voting
+                CurrentRoundText.text = "Stage 3"; // joker(new card) + voting
+                CurrentObjective.text = "Shortlist the products";
+                CurrentStageDescription.text = "Player take turns to pick one that you think it should eliminated then all players discuss and vote to eliminate or keep this card.";
+                HELP_RoundTwoEnd.SetActive(false);
+                HELP_RoundThree.SetActive(true);
+                Stage1HelpWindow.SetActive(true);
 
                 //disable discarded or destroy all cards in discarded
                 //disable player cards
@@ -370,7 +400,12 @@ public class CardGameManagerUI : MonoBehaviour
                 DiscardedInVoting.SetActive(false);
                 Prompt.SetActive(false);
                 CardWithLabel.SetActive(false);
-                CurrentRoundText.text = "Stage 5 & 6";
+                CurrentRoundText.text = "Stage 4";
+                CurrentObjective.text = "Are We Buying?";
+                CurrentStageDescription.text = "Team decide to take approaches from these final five cards.";
+                HELP_RoundThree.SetActive(false);
+                HELP_RoundFour.SetActive(true);
+                Stage1HelpWindow.SetActive(true);
 
                 StageThreeItsYourTurn.SetActive(false);
                 StageThreeWaitForTurn.SetActive(false);
@@ -410,6 +445,7 @@ public class CardGameManagerUI : MonoBehaviour
             GameObject a = GameObject.Instantiate(FinalCardPrefab, new Vector3(0, 0, 0), Quaternion.identity);
             a.SetActive(true);
             a.transform.SetParent(FinalCardContentTransform);
+            a.GetComponent<RectTransform>().localScale = Vector3.one;
 
             a.transform.GetChild(0).GetComponent<CardUI>().InitializeFullCard(so);
             a.transform.GetChild(0).GetComponent<CardUI>().DisableBackCard();
@@ -487,9 +523,17 @@ public class CardGameManagerUI : MonoBehaviour
 
         if (s == PlayerManager.instance.myPlayer.playerName)
         {
-            if (!CardGameManager.instance.lastStage)
+            if(CardGameManager.instance.lastStage)
+            {
+                Information.SetActive(true);
+                StageThreeItsYourTurn.SetActive(false);
+                StageThreeWaitForTurn.SetActive(false);
+            }
+            else if (!CardGameManager.instance.lastStage)
             {
                 Prompt.SetActive(true);
+                StageThreeItsYourTurn.SetActive(false);
+                StageThreeWaitForTurn.SetActive(false);
             }
             //if (cardGameObject.transform.parent.name.ToLower().Contains("card")) { selectedSmallVotingCard = cardGameObject; }
         }

@@ -45,13 +45,13 @@ public class AspectRatioController : MonoBehaviour
 
     // Minimum and maximum values for window width/height in pixel.
     [SerializeField]
-    private int minWidthPixel  = 512;
+    private int minWidthPixel  = 160;
     [SerializeField]
-    private int minHeightPixel = 512;
+    private int minHeightPixel = 90;
     [SerializeField]
-    private int maxWidthPixel  = 2048;
+    private int maxWidthPixel  = 3840;
     [SerializeField]
-    private int maxHeightPixel = 2048;
+    private int maxHeightPixel = 2160;
 
     // Currently locked aspect ratio.
     private float aspect;
