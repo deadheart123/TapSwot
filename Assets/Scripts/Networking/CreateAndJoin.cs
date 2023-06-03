@@ -11,6 +11,9 @@ using System.Linq;
 
 public class CreateAndJoin : MonoBehaviourPunCallbacks
 {
+    public RoomInputUI createRoomInputUI;
+    public RoomInputUI joinRoomInputUI;
+
     public static CreateAndJoin instance;
     public SceneTransition sceneTransition;
 
@@ -173,10 +176,16 @@ public class CreateAndJoin : MonoBehaviourPunCallbacks
 
     }
 
+    public override void OnCreateRoomFailed(short returnCode, string message)
+    {
+        Debug.Log("Create room failed because "+returnCode+":"+message);
+        createRoomInputUI.DisplayErrorMessage(message);
+    }
 
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
-        Debug.Log("Join room failed because {message}");
+        Debug.Log("Join room failed because "+returnCode+":"+message);
+        joinRoomInputUI.DisplayErrorMessage(message);
     }
 
     #endregion

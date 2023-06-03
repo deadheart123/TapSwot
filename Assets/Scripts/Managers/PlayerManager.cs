@@ -47,7 +47,7 @@ public class PlayerManager : MonoBehaviour
 
                 GameObject a = GameObject.Instantiate(otherPlayerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
                 a.transform.SetParent(Otherplayer_content);
-
+                a.GetComponent<RectTransform>().localScale = Vector3.one;
 
                 //GameObject a = GameObject.Instantiate(otherPlayerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
                 //a.transform.SetParent(allPlayersGameobject[kvp.Value.ActorNumber - 1]);
@@ -62,7 +62,7 @@ public class PlayerManager : MonoBehaviour
                 Debug.Log("local");
                 GameObject localPlayer = GameObject.Instantiate(myPlayerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
                 localPlayer.transform.SetParent(Myplayer_content);
-
+                localPlayer.GetComponent<RectTransform>().localScale = Vector3.one;
 
 
                 //GameObject localPlayer = GameObject.Instantiate(myPlayerPrefab, new Vector3(0, 0, 0), Quaternion.identity);

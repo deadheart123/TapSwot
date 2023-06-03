@@ -264,7 +264,7 @@ public class CardGameManager : MonoBehaviourPunCallbacks
                 if (!lastStage)
                 {
                     //enable helpers
-                    CardGameManagerUI.instance.Information.SetActive(true);
+                    //CardGameManagerUI.instance.Information.SetActive(true);
                     lastStage = true;
                 }
             }

@@ -10,6 +10,7 @@ public class TimeController : MonoBehaviour
 {
     public static TimeController instance;
 
+    public TextMeshProUGUI timeTitle;
     public TextMeshProUGUI timeCounter;
     public TextMeshProUGUI maxTimeLimit;
 
@@ -27,8 +28,10 @@ public class TimeController : MonoBehaviour
     {      
         string timeLimitType = PhotonNetwork.CurrentRoom.CustomProperties["TIME_LIMIT"].ToString();
         
+
         if(timeLimitType == "No Time Limit")
         {
+            timeTitle.text = "TIME ELAPSED";
             maxTimeLimit.text = timeLimitType;
             timeCounter.color = Color.white;
             timeCounter.text = "<font-weight=900>0:00:00";

@@ -148,6 +148,7 @@ public class CardManager : MonoBehaviour
         {
             GameObject a = GameObject.Instantiate(card, new Vector3(0, 0, 0), Quaternion.identity);
             a.transform.SetParent(discardedDeckRect);
+            a.GetComponent<RectTransform>().localScale = Vector3.one;
             a.GetComponent<CardUI>().Initialize(discardedCards[i]);
         }
     }
@@ -170,6 +171,7 @@ public class CardManager : MonoBehaviour
             GameObject a = GameObject.Instantiate(CardManager.instance.card, new Vector3(0, 0, 0), Quaternion.identity);
             a.SetActive(true);
             a.transform.SetParent(CardGameManagerUI.instance.VotingCardHolders[i]);
+            a.GetComponent<RectTransform>().localScale = Vector3.one;
 
             a.GetComponent<CardUI>().Initialize(cardsToIns[i]);
             a.GetComponent<CardUI>().DisableBackCard();
@@ -214,6 +216,7 @@ public class CardManager : MonoBehaviour
         {
             GameObject a = GameObject.Instantiate(card, new Vector3(0, 0, 0), Quaternion.identity);
             a.transform.SetParent(mainDeckRect);
+            a.GetComponent<RectTransform>().localScale = Vector3.one;
             a.GetComponent<CardUI>().Initialize(remainingCards[i]);
         }
     }
