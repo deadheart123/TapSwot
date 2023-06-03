@@ -355,7 +355,8 @@ public class CardUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
                 transform.parent.parent.name == "Card2" ||
                 transform.parent.parent.name == "Card3" ||
                 transform.parent.parent.name == "Card4" ||
-                transform.parent.parent.name == "Card5")
+                transform.parent.parent.name == "Card5" || 
+                transform.parent.parent.parent.name == "DiscardedCardsScroll")
             {
                 CardGameManagerUI.instance.ShowFullCard(this.card);
             }

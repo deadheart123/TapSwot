@@ -413,6 +413,25 @@ public class Player : MonoBehaviour
         }
     }
 
+    public GameObject YesNoPanel;
+    public TMPro.TextMeshProUGUI YesNOText;
+
+    public void SetYesNoText(string decisionValue)
+    {
+        if (YesNoPanel != null)
+        {
+            YesNoPanel.SetActive(true);
+        }
+        if (decisionValue == "Yes")
+        {
+            YesNOText.color = Color.green;
+        }
+        else
+        {
+            YesNOText.color = Color.red;
+        }
+        YesNOText.text = decisionValue;
+    }
 
     public void ReceiveUpdatedCardInSlot(string cardSlot, string cardId)
     {

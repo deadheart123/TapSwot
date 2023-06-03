@@ -42,18 +42,20 @@ public class DropdownController : MonoBehaviour
 
     public void InitialiseAllDropdowns(List<TMPro.TMP_Dropdown> _dropdowns)
     {
-        List<int> previousRanks = new List<int>();
-        if (dropdowns.Count > 0)
-        {
-            foreach (int x in selectedOptions)
-            {
-                previousRanks.Add(x);
-            }
-        }
+        //List<int> previousRanks = new List<int>();
+        //if (dropdowns.Count > 0)
+        //{
+        //    foreach (int x in selectedOptions)
+        //    {
+        //        previousRanks.Add(x);
+        //    }
+        //}
 
         selectedOptions.Clear();
         dropdowns.Clear();
         lastOption.Clear();
+        CardGameManagerUI.instance.SendRankButton.interactable = false;
+
 
         selectedOptions = new List<int>();
         dropdowns = new List<TMPro.TMP_Dropdown>();
@@ -68,17 +70,17 @@ public class DropdownController : MonoBehaviour
             {
                 OnDropdownValueChanged(dropdownIndex, value);
             });
-            if (previousRanks.Count == dropdowns.Count)
-            {
-                selectedOptions.Add(previousRanks[i]);
-            }
+            //if (previousRanks.Count == dropdowns.Count)
+            //{
+            //    selectedOptions.Add(previousRanks[i]);
+            //}
         }
-        if (previousRanks.Count == dropdowns.Count)
+        //if (previousRanks.Count == dropdowns.Count)
         {
             for (int i = 0; i < dropdowns.Count; i++)
             {
-                if(previousRanks[i]!=0)
-                    dropdowns[i].SetValueWithoutNotify(previousRanks[i]);
+                //if(previousRanks[i]!=0)
+                    dropdowns[i].SetValueWithoutNotify(0);
             }
         }
 
@@ -140,6 +142,10 @@ public class DropdownController : MonoBehaviour
         if (CheckIfAllDropdownsHasSetValue())
         {
             CardGameManagerUI.instance.SendRankButton.interactable = true;
+        }
+        else
+        {
+            CardGameManagerUI.instance.SendRankButton.interactable = false;
         }
     }
 }

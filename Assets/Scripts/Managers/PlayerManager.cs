@@ -133,7 +133,31 @@ public class PlayerManager : MonoBehaviour
         gameObject.GetComponent<PhotonView>().RPC("ReceiveSkipNewCard", RpcTarget.All, playerID);
     }
 
+    public void SendYesOnLastStage()
+    {
+        string playerID = myPlayer.playerID.ToString();
+        gameObject.GetComponent<PhotonView>().RPC("LastStageDecision", RpcTarget.All, "Yes", playerID);
+    }
+
+    public void SendNoOnLastStage()
+    {
+        string playerID = myPlayer.playerID.ToString();
+        gameObject.GetComponent<PhotonView>().RPC("LastStageDecision", RpcTarget.All, "No", playerID);
+    }
+
     [PunRPC]
+    public void LastStageDecision(string decision, string playerID)
+    {
+        foreach (Player p in currentPlayersList)
+        {
+            if (p.playerID.ToString() == playerID)
+            {
+                p.SetYesNoText(decision);
+            }
+        }
+    }
+
+        [PunRPC]
     public void ReceiveNewCard(string playerID, string value, string cardTitle, string cardSubTitle, string cardDesc, string cardSlotToReplace)
     {
         NewCardPlayersTurn.Add(playerID);
