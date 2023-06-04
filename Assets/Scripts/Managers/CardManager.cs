@@ -33,15 +33,14 @@ public class CardManager : MonoBehaviour
 
     public void AddAllRemainingCardsToDiscardedCards()
     {
-        CardGameManagerUI.instance.MoveToNextStage.SetActive(false);
-        Destroy(CardGameManagerUI.instance.MoveToNextStage);
+        CardGameManagerUI.instance.isShowMoveToNextRound = true;
+        CardGameManagerUI.instance.MoveToNextStage.GetComponent<Button>().interactable = false;
         StartCoroutine(SendRemoveAllRemainingCards());
+        Destroy(CardGameManagerUI.instance.MoveToNextStage);
         //disable drag and drop on everything
-
         PlayerManager.instance.myPlayer.Ex_DisableDragOnAllCardSlots();
         CardGameManagerUI.instance.RemainingDeckScroll.IsDraggable = false;
         CardGameManagerUI.instance.DiscardedDeckScroll.IsDraggable = false;
-
         //CardGameManager.instance.PlayerTookTurn();
     }
 
@@ -176,6 +175,7 @@ public class CardManager : MonoBehaviour
             a.GetComponent<CardUI>().Initialize(cardsToIns[i]);
             a.GetComponent<CardUI>().DisableBackCard();
             a.GetComponent<CardUI>().ShowRanking();
+    
         }
         votingCardsCOunt = PlayerManager.instance.ReceivedCardsFromAllPlayersAfterRanking.Count;
         CardGameManagerUI.instance.CardsRemaining.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = votingCardsCOunt.ToString();

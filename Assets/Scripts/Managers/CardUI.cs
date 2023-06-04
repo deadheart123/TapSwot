@@ -11,9 +11,13 @@ public class CardUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
 {
     public CardSO card = new CardSO();
     public TextMeshProUGUI cardTitle;
+    public Color cardColorOrange;
+    public Color cardColorGrey;
+
     public TextMeshProUGUI cardDescription;
     public TextMeshProUGUI cardRank;
     public TextMeshProUGUI cardCategory;
+    public Image cardCategoryImage;
 
     public TMPro.TMP_Dropdown rankDropdown;
     public Transform rankDropdownTransform;
@@ -34,7 +38,19 @@ public class CardUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
         cardTitle.text = "<font-weight=800>" + card.cardTitle;
         cardDescription.text = card.cardDescription;
         cardRank.text = card.cardRank.ToString();
-        cardCategory.text = card.cardCategory;
+        cardCategory.text = "<font-weight=900>" + card.cardCategory;
+
+        if(card.cardCategory == "S" || card.cardCategory == "O")
+        {
+            cardCategoryImage.color = cardColorOrange;
+            cardTitle.color = cardColorOrange;
+        }
+        else if(card.cardCategory == "W" || card.cardCategory == "T")
+        {
+            cardCategoryImage.color = cardColorGrey;
+            cardTitle.color = cardColorGrey;
+        }
+
         if (rankDropdown != null)
         {
             rankDropdown.value = 0;
@@ -47,7 +63,7 @@ public class CardUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
                 CheckParentAndSetBackCard();
             }
         }
-        lastDropDownValue = 0;
+        lastDropDownValue = 5;
         // Save the original parent transform
         originalParent = transform.parent;
         
@@ -62,6 +78,7 @@ public class CardUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
         cardDescription.text = card.cardDescription;
         cardRank.text = card.cardRank.ToString();
         cardCategory.text = card.cardCategory;
+        
         
         if (transform.parent != null)
         {
@@ -115,13 +132,14 @@ public class CardUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
                 if (transform.parent.parent.parent != null)
                 {
                     //to-do add round check
-                    //if (transform.parent.parent.name == "DiscardedCardsScroll" || transform.parent.parent.name == "RemainingCardsScroll")
+                    //if (|| transform.parent.parent.name == "RemainingCardsScroll")
                     if (transform.parent.parent.parent.name == "RemainingCardsScroll")
                     {
                         EnableBackCard();
                     }
-                    else if (transform.parent.parent.name == "Card1" || transform.parent.parent.name == "Card2" || transform.parent.parent.name == "Card3" || transform.parent.parent.name == "Card4" ||
-                        transform.parent.parent.name == "Card5")
+                    //else if (transform.parent.parent.name == "Card1" || transform.parent.parent.name == "Card2" || transform.parent.parent.name == "Card3" || transform.parent.parent.name == "Card4" ||
+                    //    transform.parent.parent.name == "Card5" || transform.parent.parent.name == "DiscardedCardsScroll")
+                    else
                     {
                         DisableBackCard();
                     }
@@ -271,7 +289,19 @@ public class CardUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
         cardDescription.text = card.cardDescription;
         CardBrief.text = card.cardBrief;
         cardRank.text = card.cardRank.ToString();
-        cardCategory.text = card.cardCategory;
+        cardCategory.text = "<font-weight=900>" + card.cardCategory;
+
+        if(card.cardCategory == "S" || card.cardCategory == "O")
+        {
+            cardCategoryImage.color = cardColorOrange;
+            cardTitle.color = cardColorOrange;
+        }
+        else if(card.cardCategory == "W" || card.cardCategory == "T")
+        {
+            cardCategoryImage.color = cardColorGrey;
+            cardTitle.color = cardColorGrey;
+        }
+        
         if (rankDropdown != null)
         {
             rankDropdown.gameObject.SetActive(true);

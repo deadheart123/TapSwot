@@ -7,7 +7,6 @@ using DG.Tweening;
 public class MascotTalkAnimation : MonoBehaviour
 {
     [SerializeField] private float time = 0f;
-    [SerializeField] private bool activeStatus = false;
     [SerializeField] private RectTransform obj;
     [SerializeField] private RectTransform mascot;
     [SerializeField] private CanvasGroup speechBubble;
@@ -17,22 +16,34 @@ public class MascotTalkAnimation : MonoBehaviour
 
     void Start()
     {
+        obj.anchoredPosition = startAnchor;
+        speechBubble.alpha = 0f;
+        StartCoroutine(EnterTheScene());
+        if(buttonGroup != null)
+        {
+            buttonGroup.SetActive(false);
+        }
+    }
 
+    void OnEnable()
+    {
+        obj.anchoredPosition = startAnchor;
+        speechBubble.alpha = 0f;
+        if(buttonGroup != null)
+        {
+            buttonGroup.SetActive(false);
+        }
+        StartCoroutine(EnterTheScene());
+        Debug.Log(gameObject.name + ":onenable");
+    }
+
+    void OnDisable()
+    {
+        Debug.Log(gameObject.name + ":ondisable");
     }
 
     void Update()
     {
-        if(gameObject.activeSelf == true && activeStatus == false)
-        {
-            time = 0f;
-            StartCoroutine(EnterTheScene());
-            activeStatus = true;
-        }
-        else if(gameObject.activeSelf == false && activeStatus == true)
-        {
-            activeStatus = false;
-        }
-
         time = time + Time.deltaTime;
         if(time >= 4f)
         {
@@ -43,15 +54,9 @@ public class MascotTalkAnimation : MonoBehaviour
     
     public IEnumerator EnterTheScene()
     {
-        obj.anchoredPosition = startAnchor;
-        speechBubble.alpha = 0f;
-        if(buttonGroup != null)
-        {
-            buttonGroup.SetActive(false);
-        }
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.4f);
         obj.DOAnchorPos(finishAnchor,0.5f,false);
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(0.5f);
         speechBubble.alpha = 1f;
         if(buttonGroup != null)
         {

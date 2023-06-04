@@ -13,6 +13,8 @@ public class CardGameManagerUI : MonoBehaviour
 {
     public static CardGameManagerUI instance;
 
+    public TimeController timeController;
+
     public TMPro.TextMeshProUGUI PlayerTurnText;
     public TMPro.TextMeshProUGUI CurrentRoundText, CurrentObjective, CurrentStageDescription;
 
@@ -25,9 +27,11 @@ public class CardGameManagerUI : MonoBehaviour
     public ReorderableList RemainingDeckScroll;
 
     public GameObject WaitForOtherPlayer;
+    public GameObject StageTwoWaitForOtherPlayer;
     public GameObject ItsYourTurn;
     public GameObject SelectFromRemaining;
     public GameObject ConfirmReplace;
+    public GameObject MoveToNextRound;
 
     public TMPro.TextMeshProUGUI DiscardedScrollText, RemainingScrollText;
 
@@ -35,6 +39,7 @@ public class CardGameManagerUI : MonoBehaviour
 
     public GameObject cardRankingAndActions_1;
     public GameObject discardedDeckGameObject, remaingingDeckGameObject;
+    public GameObject lockedDiscardCard;
 
     public DropdownController dropdownController;
 
@@ -62,6 +67,16 @@ public class CardGameManagerUI : MonoBehaviour
     public TMPro.TMP_Dropdown SWOTDropdown;
     public TMPro.TMP_InputField newCardTitle, newCardSubTitle, newCardDescription;
 
+    [Header("Help Screen")]
+    public GameObject HELP_Setup;
+    public GameObject HELP_RoundOne, HELP_RoundTwo, HELP_RoundTwoEnd, HELP_RoundThree, HELP_RoundFour;
+
+    [HideInInspector] public bool isShowMoveToNextRound;
+    bool isShowSelectFromRemaining = false;
+    [HideInInspector] public bool isShowConfirmReplace;
+    [HideInInspector] public bool isShowPrompt = false;
+    [HideInInspector] public bool isShowInformation = false;
+
     private void Awake()
     {
         instance = this;
@@ -69,17 +84,17 @@ public class CardGameManagerUI : MonoBehaviour
 
     private void Start()
     {
-        DisableAllHelperEmojisOfRoundOne();
+      //DisableAllHelperEmojisOfRoundOne();
         Stage1HelpWindow.SetActive(true);
     }
     public void UpdateDiscardedScrollText(string count)
     {
-        DiscardedScrollText.text = "<font-weight=900>DISCARDED CARDS (" + count + ")";
+        //DiscardedScrollText.text = "<font-weight=900>DISCARDED CARDS (" + count + ")";
     }
 
     public void UpdateRemainingScrollText(string count)
     {
-        RemainingScrollText.text = "<font-weight=900>REMAINING CARDS (" + count + ")"; 
+        RemainingScrollText.text = "<font-weight=900>"+count; 
     }
 
     public void UpdatePlayerTurnText()
@@ -120,14 +135,19 @@ public class CardGameManagerUI : MonoBehaviour
         WaitForOtherPlayer.SetActive(false);
         ItsYourTurn.SetActive(false);
         SelectFromRemaining.SetActive(false);
+        MoveToNextRound.SetActive(false);
     }
+
+    
 
     public void ShowConfirmReplace()
     {
         if (CardGameManager.instance.GetGameState() == GameStateEnum.SETUP || CardGameManager.instance.GetGameState() == GameStateEnum.ROUND_ONE)
         {
-            DisableAllHelperEmojisOfRoundOne();
-            ConfirmReplace.SetActive(true);
+            // DisableAllHelperEmojisOfRoundOne();
+            isShowConfirmReplace = true;
+            isShowSelectFromRemaining = false;
+            // ConfirmReplace.SetActive(true);
         }
         if (CardGameManager.instance.GetGameState() == GameStateEnum.ROUND_TWO_END)
         {
@@ -139,38 +159,97 @@ public class CardGameManagerUI : MonoBehaviour
     {
         if(CardGameManager.instance.GetGameState() == GameStateEnum.SETUP || CardGameManager.instance.GetGameState() == GameStateEnum.ROUND_ONE)
         {
-            DisableAllHelperEmojisOfRoundOne();
-            SelectFromRemaining.SetActive(true);
+            // DisableAllHelperEmojisOfRoundOne();
+            isShowSelectFromRemaining = true;
         }
     }
+    
     string s;
     private void Update()
     {
         s = PlayerTurnText.text;
         s = s.Replace("Current Turn:", "");
-        //my turn.. 
-        if (s == PlayerManager.instance.myPlayer.playerName)
+         
+        //Dialogue Start when time count
+        if(timeController.timeGoing == true)
         {
-            ShowItsYourTurn();
+            //my turn..
+            if (s == PlayerManager.instance.myPlayer.playerName)
+            {
+                ShowItsYourTurn();
+            }
+            //not my turn
+            else
+            {
+                ShowWaitForTurn();
+            }
         }
-        //not my turn
+
+        if(CardGameManager.instance.GetGameState() == GameStateEnum.ROUND_TWO_END && CardGameManagerUI.instance.DiscardedDeckScroll.IsDraggable == false)
+        {
+            lockedDiscardCard.SetActive(true);
+        }
         else
         {
-            ShowWaitForTurn();
+            lockedDiscardCard.SetActive(false);
         }
     }
     
     public void ShowItsYourTurn()
     {
-        if (CardGameManager.instance.GetGameState() == GameStateEnum.ROUND_THREE)
+        if(CardGameManager.instance.GetGameState() == GameStateEnum.ROUND_THREE && isShowInformation == true)
+        {
+            StageThreeItsYourTurn.SetActive(false);
+            StageThreeWaitForTurn.SetActive(false);
+            Prompt.SetActive(false);
+            Information.SetActive(true);
+
+        }
+        else if(CardGameManager.instance.GetGameState() == GameStateEnum.ROUND_THREE && isShowPrompt == true)
+        {
+            Prompt.SetActive(true);
+            StageThreeItsYourTurn.SetActive(false);
+            StageThreeWaitForTurn.SetActive(false);
+        }
+        else if (CardGameManager.instance.GetGameState() == GameStateEnum.ROUND_THREE)
         {
             StageThreeItsYourTurn.SetActive(true);
             StageThreeWaitForTurn.SetActive(false);
+            Prompt.SetActive(false);
             PlayerManager.instance.myPlayer.EnableKeepCardButton();
+        }
+        else if(CardGameManager.instance.GetGameState() == GameStateEnum.ROUND_TWO)
+        {
+            DisableAllHelperEmojisOfRoundOne();
+            StageTwoWaitForOtherPlayer.SetActive(false);
+            NewCardHelper.SetActive(true);
+        }
+        else if(isShowMoveToNextRound == true)
+        {
+            WaitForOtherPlayer.SetActive(false);
+            ItsYourTurn.SetActive(false);
+            SelectFromRemaining.SetActive(false);
+            ConfirmReplace.SetActive(false);
+            MoveToNextRound.SetActive(true);
+        }
+        else if(isShowConfirmReplace == true)
+        {
+            WaitForOtherPlayer.SetActive(false);
+            ItsYourTurn.SetActive(false);
+            SelectFromRemaining.SetActive(false);
+            ConfirmReplace.SetActive(true);
+        }
+        else if(isShowSelectFromRemaining == true)
+        {
+            WaitForOtherPlayer.SetActive(false);
+            ItsYourTurn.SetActive(false);
+            SelectFromRemaining.SetActive(true);
         }
         else
         {
-            DisableAllHelperEmojisOfRoundOne();
+            ConfirmReplace.SetActive(false);
+            WaitForOtherPlayer.SetActive(false);
+            SelectFromRemaining.SetActive(false);
             ItsYourTurn.SetActive(true);
         }
 
@@ -195,32 +274,47 @@ public class CardGameManagerUI : MonoBehaviour
         if (PhotonNetwork.IsMasterClient)
         {
             if (MoveToNextStage != null)
-                MoveToNextStage.SetActive(true);
+                MoveToNextStage.GetComponent<Button>().interactable = true;
         }
         else
         {
             if (MoveToNextStage != null)
-                MoveToNextStage.SetActive(false);
+                MoveToNextStage.GetComponent<Button>().interactable = false;
         }
     }
     public void ShowWaitForTurn()
     {
         if (CardGameManager.instance.GetGameState() == GameStateEnum.ROUND_THREE)
         {
+            Information.SetActive(false);
             StageThreeItsYourTurn.SetActive(false);
             StageThreeWaitForTurn.SetActive(true);
             PlayerManager.instance.myPlayer.DisableKeepCardButton();
         }
+        else if (CardManager.instance.GetRemaingCards().Count == 0 && rankingRound)
+        {
+            DisableAllHelperEmojisOfRoundOne();
+            StageTwoWaitForOtherPlayer.SetActive(false);
+        }
+        else if(CardGameManager.instance.GetGameState() == GameStateEnum.ROUND_TWO)
+        {
+            DisableAllHelperEmojisOfRoundOne();
+            NewCardHelper.SetActive(false);
+            StageTwoWaitForOtherPlayer.SetActive(true);
+        }
+        else if(isShowMoveToNextRound == true)
+        {
+            WaitForOtherPlayer.SetActive(false);
+            ItsYourTurn.SetActive(false);
+            SelectFromRemaining.SetActive(false);
+            ConfirmReplace.SetActive(false);
+            MoveToNextRound.SetActive(true);
+        }
         else
         {
-            DisableAllHelperEmojisOfRoundOne();
+            ConfirmReplace.SetActive(false);
+            ItsYourTurn.SetActive(false);
             WaitForOtherPlayer.SetActive(true);
-        }
-
-        if (CardManager.instance.GetRemaingCards().Count == 0 && rankingRound)
-        {
-            DisableAllHelperEmojisOfRoundOne();
-            WaitForOtherPlayer.SetActive(false);
         }
 
         if(CardGameManager.instance.GetGameState() == GameStateEnum.ROUND_TWO)
@@ -236,7 +330,7 @@ public class CardGameManagerUI : MonoBehaviour
         }
 
         if(MoveToNextStage!=null)
-            MoveToNextStage.SetActive(false);
+            MoveToNextStage.GetComponent<Button>().interactable = false;
     }
 
     public List<Transform> VotingCardHolders = new List<Transform>();
@@ -246,10 +340,10 @@ public class CardGameManagerUI : MonoBehaviour
         PlayerManager.instance.SendSkipNewCard();
         CardGameManager.instance.OnConfirmButtonPressed();//sending turn
 
-        NewCardDialog.SetActive(false);
-        NewCardSkipButton.SetActive(false);
-        NewCardParent.SetActive(false);
-        NewCardHelper.SetActive(false);
+        // NewCardDialog.SetActive(false);
+        // NewCardSkipButton.SetActive(false);
+        // NewCardParent.SetActive(false);
+        // NewCardHelper.SetActive(false);
     }
     public void SaveNewCardData()
     {
@@ -288,20 +382,30 @@ public class CardGameManagerUI : MonoBehaviour
         switch (currentGameState)
         {
             case GameStateEnum.SETUP:
-                CurrentRoundText.text = "Stage 1";
+                CurrentRoundText.text = "Setup";
                 break;
             case GameStateEnum.ROUND_ONE:
-                CurrentRoundText.text = "Stage 2";//card selection from remaining
+                CurrentRoundText.text = "Stage 1";//card selection from remaining
+                CurrentObjective.text = "Judge the products";
+                CurrentStageDescription.text = "Each player take turns to discard and pick up one card until all cards in the pack have been used.";
                 break;
             case GameStateEnum.ROUND_TWO:
-                NewCardHelper.SetActive(true);
+                //NewCardHelper.SetActive(true);
                 NewCardSkipButton.SetActive(true);
                 NewCardDialog.SetActive(false);
+                discardedDeckGameObject.GetComponent<CanvasGroup>().alpha = 0;
                 //disable drag on all cards (discarded, card slots, remaining)
 
                 PlayerManager.instance.myPlayer.Ex_DisableDragOnAllCardSlots();
                 CardGameManagerUI.instance.RemainingDeckScroll.IsDraggable = false;
                 CardGameManagerUI.instance.DiscardedDeckScroll.IsDraggable = false;
+                
+                CurrentRoundText.text = "Bonus Stage";
+                CurrentObjective.text = "Shortlist the products";
+                CurrentStageDescription.text = "Player may swap one of your card to your custom card.";
+                HELP_RoundOne.SetActive(false);
+                HELP_RoundTwo.SetActive(true);
+                Stage1HelpWindow.SetActive(true);
 
                 NewCardParent.SetActive(true);
                 NewCardSlotButtons[0].SetActive(true);
@@ -317,7 +421,15 @@ public class CardGameManagerUI : MonoBehaviour
                 NewCardHelper.SetActive(false);
                 NewCardSkipButton.SetActive(false);
                 NewCardDialog.SetActive(false);
-                CurrentRoundText.text = "Stage 3";//ranking + select from pile
+                discardedDeckGameObject.GetComponent<CanvasGroup>().alpha = 1;
+
+                CurrentRoundText.text = "Stage 2";//ranking + select from pile
+                CurrentObjective.text = "Shortlist the products";
+                CurrentStageDescription.text = "Score your personal final 5 cards from 1 (most important) to 5 (least important).";
+                HELP_RoundTwo.SetActive(false);
+                HELP_RoundTwoEnd.SetActive(true);
+                Stage1HelpWindow.SetActive(true);
+
                 cardRankingAndActions_1.SetActive(true);
                 remaingingDeckGameObject.SetActive(false); //rankin + select from discarded pile
                 rankingRound = true;
@@ -338,7 +450,9 @@ public class CardGameManagerUI : MonoBehaviour
                 break;
             case GameStateEnum.ROUND_THREE:
                 rankingRound = false;
-                CurrentRoundText.text = "Stage 4"; // joker(new card) + voting
+                CurrentRoundText.text = "Stage 3";
+                CurrentObjective.text = "Shortlist the products";
+                CurrentStageDescription.text = "Player take turns to pick one that you think it should eliminated then all players discuss and vote to eliminate or keep this card.";
 
                 //disable discarded or destroy all cards in discarded
                 //disable player cards
@@ -370,7 +484,9 @@ public class CardGameManagerUI : MonoBehaviour
                 DiscardedInVoting.SetActive(false);
                 Prompt.SetActive(false);
                 CardWithLabel.SetActive(false);
-                CurrentRoundText.text = "Stage 5 & 6";
+                CurrentRoundText.text = "Stage 4";
+                CurrentObjective.text = "Are We Buying?";
+                CurrentStageDescription.text = "Team decide to take approaches from these final five cards.";
 
                 StageThreeItsYourTurn.SetActive(false);
                 StageThreeWaitForTurn.SetActive(false);
@@ -410,6 +526,7 @@ public class CardGameManagerUI : MonoBehaviour
             GameObject a = GameObject.Instantiate(FinalCardPrefab, new Vector3(0, 0, 0), Quaternion.identity);
             a.SetActive(true);
             a.transform.SetParent(FinalCardContentTransform);
+            a.transform.localScale = Vector3.one;
 
             a.transform.GetChild(0).GetComponent<CardUI>().InitializeFullCard(so);
             a.transform.GetChild(0).GetComponent<CardUI>().DisableBackCard();
@@ -481,6 +598,8 @@ public class CardGameManagerUI : MonoBehaviour
     {
         selectedSmallVotingCard = cardGameObject;
     } 
+
+    
     public void ShowFullCardForDecision(CardSO card, GameObject cardGameObject)
     {
         s = PlayerTurnText.text;
@@ -490,12 +609,13 @@ public class CardGameManagerUI : MonoBehaviour
         {
             if (!CardGameManager.instance.lastStage)
             {
-                Prompt.SetActive(true);
+                isShowPrompt = true;
             }
             //if (cardGameObject.transform.parent.name.ToLower().Contains("card")) { selectedSmallVotingCard = cardGameObject; }
         }
         else
         {
+            isShowPrompt = false;
             Prompt.SetActive(false);
         }
         CardWithLabel.SetActive(true);
@@ -505,12 +625,12 @@ public class CardGameManagerUI : MonoBehaviour
     public void ShowFullCard(CardSO card)
     {
         FullCard.SetActive(true);
-        FullCard.transform.GetChild(0).GetComponent<CardUI>().InitializeFullCard(card);
+        FullCard.transform.Find("FullCard").GetComponent<CardUI>().InitializeFullCard(card);
     }
 
     public void HideFullCard()
     {
-        FullCard.transform.GetChild(0).GetComponent<CardUI>().ClearCard();
+        FullCard.transform.Find("FullCard").GetComponent<CardUI>().ClearCard();
         FullCard.SetActive(true);
     }
 

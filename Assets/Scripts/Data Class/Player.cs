@@ -133,7 +133,7 @@ public class Player : MonoBehaviour
         {
             //show our turn received and update UI from CardGameManager based on that.
             EnableMyPlayerUI();
-            CardGameManagerUI.instance.ShowItsYourTurn();
+            //CardGameManagerUI.instance.ShowItsYourTurn(); (No need, already updated on CardGameManagerUI)
         }
     }
 
@@ -144,7 +144,7 @@ public class Player : MonoBehaviour
             Debug.Log("[OtherPlayerTurn int]:" + "[playerID]:" + playerID);
 
             DisableMyPlayerUI();
-            CardGameManagerUI.instance.ShowWaitForTurn();
+           //CardGameManagerUI.instance.ShowWaitForTurn();  (No need, already updated on CardGameManagerUI)
         }
     }
 
@@ -596,6 +596,7 @@ public class Player : MonoBehaviour
         for (int i = 0; i < CardGameManagerUI.instance.DiscardScrollContent.childCount; i++)
         {
             CardGameManagerUI.instance.DiscardScrollContent.GetChild(i).GetComponent<CardUI>().SetKeepCardButtonState(false);
+            
         }
     }
 

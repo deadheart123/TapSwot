@@ -110,7 +110,15 @@ public class CardGameManager : MonoBehaviourPunCallbacks
     public void OnConfirmButtonPressed()
     {
         UpdateTurn();
+        CardGameManagerUI.instance.isShowConfirmReplace = false;
     }
+    
+    public void OnSkipPressed()
+    {
+        UpdateTurn();
+        CardGameManagerUI.instance.isShowInformation = false;
+    }
+
     private bool checkLastTurns = false;
     void UpdateAnimationCard(GameObject animatedCard)
     {
@@ -151,6 +159,7 @@ public class CardGameManager : MonoBehaviourPunCallbacks
     }
     public void DiscardSelectedCardVoting()
     {
+        CardGameManagerUI.instance.isShowPrompt = false;
         PlayerManager.instance.SendDiscardCardVoting();
     }
 
@@ -264,7 +273,8 @@ public class CardGameManager : MonoBehaviourPunCallbacks
                 if (!lastStage)
                 {
                     //enable helpers
-                    //CardGameManagerUI.instance.Information.SetActive(true);
+                    CardGameManagerUI.instance.isShowInformation = true;
+                    CardGameManagerUI.instance.CardWithLabel.SetActive(false);
                     lastStage = true;
                 }
             }

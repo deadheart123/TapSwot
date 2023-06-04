@@ -15,7 +15,7 @@ public class TimeController : MonoBehaviour
     public TextMeshProUGUI maxTimeLimit;
 
     private TimeSpan timePlaying;
-    private bool timeGoing = false;
+    public bool timeGoing = false;
     private float elapsedTime;
     private float timeLimit = 0;
 
@@ -67,7 +67,15 @@ public class TimeController : MonoBehaviour
             timeCounter.text = "<font-weight=900>3:00:00";
         }
 
-        maxTimeLimit.text = "Time Limit: "+timeLimitType;
+        if(timeLimitType == "No Time Limit")
+        {
+            maxTimeLimit.text = "Untimed Session";
+        }
+        else
+        {
+            maxTimeLimit.text = "Session Duration: "+timeLimitType;
+        }
+            
     }
 
     public void BeginTimer()

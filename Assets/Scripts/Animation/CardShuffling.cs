@@ -6,6 +6,8 @@ using DG.Tweening;
 
 public class CardShuffling : MonoBehaviour
 {
+    [SerializeField] private PlayerManager playerManager;
+
     [SerializeField] private GameObject[] cardStack;
     [SerializeField] private GameObject[] cardShuffle;
     [SerializeField] private GameObject[] cardPlayer;
@@ -42,6 +44,8 @@ public class CardShuffling : MonoBehaviour
     [SerializeField] private Vector2 cardPlayer3Position;
     [SerializeField] private Vector2 cardPlayer4Position;
     [SerializeField] private Vector2 drawPilePosition;
+    [SerializeField] private CanvasGroup drawPileCanvasGroup;
+    [SerializeField] private GameObject fakeDrawPile;
 
     [HideInInspector] private int cardLeft;
     [HideInInspector] private float drawDuration = 0.2f;
@@ -112,12 +116,16 @@ public class CardShuffling : MonoBehaviour
         for(cardLeft = cardStack.Length-1; cardLeft >= cardStack.Length/2; cardLeft--)
         {
             cardStack[cardLeft].SetActive(false);
-            yield return new WaitForSeconds(0.8f);
+            yield return new WaitForSeconds(drawDuration*playerManager.currentPlayersList.Count);
         }
 
         pileLeft.GetComponent<RectTransform>().DOAnchorPos(drawPilePosition,drawDuration*2,false);
         pileLeft.transform.DOScale(0f, drawDuration*2);
         yield return new WaitForSeconds(drawDuration*2);
+        //Show draw pile
+        drawPileCanvasGroup.alpha = 1;
+        fakeDrawPile.SetActive(false);
+        //Show client card
         for (int x = 0; x < clientCard.Length; x++)
         {
             clientCard[x].SetActive(true);
@@ -137,25 +145,33 @@ public class CardShuffling : MonoBehaviour
                 yield return new WaitForSeconds(drawDuration);
                 cardPlayer[i/4].GetComponent<RectTransform>().anchoredPosition = cardPlayer1Position[i/4];
                 cardDraw.GetComponent<RectTransform>().anchoredPosition = cardStack[cardLeft-1].GetComponent<RectTransform>().anchoredPosition;
-                cardDraw.transform.localScale = new Vector3(1,1,1);
+                
             }
             else //Player 2
             {
-                if((i+player)%4 == 2)
+                if((i+player)%4 == 2 && playerManager.currentPlayersList.Count >= 2)
                 {
                     cardDraw.GetComponent<RectTransform>().DOAnchorPos(cardPlayer2Position,drawDuration,false);
+                    cardDraw.transform.DOScale(0f, drawDuration);
+                    yield return new WaitForSeconds(drawDuration);
                 }
-                else if((i+player)%4 == 3)
+                else if((i+player)%4 == 3 && playerManager.currentPlayersList.Count >= 3)
                 {
                     cardDraw.GetComponent<RectTransform>().DOAnchorPos(cardPlayer3Position,drawDuration,false);
+                    cardDraw.transform.DOScale(0f, drawDuration);
+                    yield return new WaitForSeconds(drawDuration);
                 }
-                else //Player 4
+                else if(playerManager.currentPlayersList.Count >= 4) //Player 4
                 {
                     cardDraw.GetComponent<RectTransform>().DOAnchorPos(cardPlayer4Position,drawDuration,false);
+                    cardDraw.transform.DOScale(0f, drawDuration);
+                    yield return new WaitForSeconds(drawDuration);
+                }
+                else
+                {
+                    cardDraw.transform.localScale = new Vector3(0,0,0);
                 }
                     
-                cardDraw.transform.DOScale(0f, drawDuration);
-                yield return new WaitForSeconds(drawDuration);
                 if(cardLeft> cardStack.Length) { Debug.Log("some issue cardLeft" + cardLeft); }
                 cardDraw.GetComponent<RectTransform>().anchoredPosition = cardStack[cardLeft].GetComponent<RectTransform>().anchoredPosition;
                 cardDraw.transform.localScale = new Vector3(1,1,1);
