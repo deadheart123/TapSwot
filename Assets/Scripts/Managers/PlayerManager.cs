@@ -181,9 +181,13 @@ public class PlayerManager : MonoBehaviour
 
     public List<CardSO> ReceivedCardsFromAllPlayersAfterRanking = new List<CardSO>();
     int ReceivedCardsFromAllPlayersAfterRankingCount = 0;
+    private bool isReceivedAllCards = false;
     [PunRPC]
     public void ReceiveCardsAndRankByPlayer(string playerID, string[] cardIDs, string[] rank)
     {
+        //if (isReceivedAllCards)
+        //    return;
+
         Debug.Log("-------------------------------------");
         Debug.Log("Player ID:" + playerID);
         var idList = new List<string>(cardIDs);
@@ -210,6 +214,8 @@ public class PlayerManager : MonoBehaviour
             CardGameManager.instance.OnConfirmButtonPressed();
             PlayerManager.instance.SendRoundRPC(GameStateEnum.ROUND_THREE.ToString());
         }
+
+        isReceivedAllCards = true;
     }
 
 

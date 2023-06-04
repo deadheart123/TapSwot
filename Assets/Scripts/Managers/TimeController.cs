@@ -64,7 +64,7 @@ public class TimeController : MonoBehaviour
             timeCounter.text = "<font-weight=900>3:00:00";
         }
 
-        maxTimeLimit.text = "Time Limit: "+timeLimitType;
+        maxTimeLimit.text = "Reference Duration: "+timeLimitType;
     }
 
     public void BeginTimer()
