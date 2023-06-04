@@ -168,6 +168,8 @@ public class CardUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
         if (KeepCard != null)
         {
             KeepCard.SetActive(false);
+            CardGameManagerUI.instance.SkipThisTurnButton.SetActive(false);
+            CardGameManagerUI.instance.SkipThisTurnButton.transform.GetChild(0).GetComponent<Button>().onClick.RemoveAllListeners();
         }
     }
 
@@ -176,6 +178,11 @@ public class CardUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
         if (KeepCard != null)
         {
             KeepCard.SetActive(true);
+            CardGameManagerUI.instance.SkipThisTurnButton.SetActive(true);
+            CardGameManagerUI.instance.SkipThisTurnButton.transform.GetChild(0).GetComponent<Button>().onClick.RemoveAllListeners();
+            CardGameManagerUI.instance.SkipThisTurnButton.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(() =>
+            CardGameManager.instance.SkipTurn());
+            
         }
         if (KeepCardButtton != null)
         {

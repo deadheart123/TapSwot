@@ -62,6 +62,8 @@ public class CardGameManagerUI : MonoBehaviour
     public TMPro.TMP_Dropdown SWOTDropdown;
     public TMPro.TMP_InputField newCardTitle, newCardSubTitle, newCardDescription;
 
+    public GameObject SkipThisTurnButton;
+
     private void Awake()
     {
         instance = this;
@@ -428,11 +430,14 @@ public class CardGameManagerUI : MonoBehaviour
     public void TakeScreenshot()
     {
         // string guid = Guid.NewGuid().ToString();
-        DateTime dt = DateTime.Now;
-        string fileName = "TAPswot_" + dt.ToString();
+        // DateTime dt = DateTime.Now;
+        string date = DateTime.Now.Date.ToString("yyyyMMdd").Replace('/', ' ');
+        string fileName = "TAPswot" + date;
         fileName = fileName.Replace("-", "_");
+        print(fileName);
         StartCoroutine(CutSpriteFromScreen(fileName));
     }
+
     //Object To Screenshot
     [SerializeField] private RectTransform _objToScreenshot;
     private IEnumerator CutSpriteFromScreen(string fileName)

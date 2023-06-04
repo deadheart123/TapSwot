@@ -144,6 +144,11 @@ public class CardGameManager : MonoBehaviourPunCallbacks
         }
     }
 
+    public void SkipTurn()
+    {
+        UpdateTurn();
+    }
+
     public void KeepCard(string idFromDiscard)
     {
         PlayerManager.instance.SendKeepCardVoting(idFromDiscard);
