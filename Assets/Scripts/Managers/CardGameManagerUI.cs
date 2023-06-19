@@ -366,6 +366,8 @@ public class CardGameManagerUI : MonoBehaviour
                 StageThreeItsYourTurn.SetActive(false);
                 StageThreeWaitForTurn.SetActive(false);
 
+                Debug.Log("CreateCardsForVotingDiscard CardGameManagerUI call");
+
                 CardManager.instance.CreateCardsForVotingDiscard();
                 break;
             case GameStateEnum.ROUND_FOUR:

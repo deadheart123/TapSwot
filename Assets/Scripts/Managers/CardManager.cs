@@ -152,23 +152,34 @@ public class CardManager : MonoBehaviour
         }
     }
     public int votingCardsCOunt = 0;
+    private bool haveWeCreatedCardsForVoting = false;
     public void CreateCardsForVotingDiscard()
     {
+        if (haveWeCreatedCardsForVoting) return;
+        Debug.Log("CreateCardsForVotingDiscard");
         List<CardSO> cardsToIns = new List<CardSO>();
         cardsToIns = PlayerManager.instance.ReceivedCardsFromAllPlayersAfterRanking.OrderBy(c => c.cardRank).ToList();
-
+        Debug.Log("CreateCardsForVotingDiscard" + cardsToIns.Count);
         for (int x = 0; x < CardGameManagerUI.instance.VotingCardHolders.Count; x++)
         {
             if (CardGameManagerUI.instance.VotingCardHolders[x].childCount > 0)
             {
-                Destroy(CardGameManagerUI.instance.VotingCardHolders[x].GetChild(0).gameObject);
+                Debug.Log("CreateCardsForVotingDiscard Destroying");
+                DestroyImmediate(CardGameManagerUI.instance.VotingCardHolders[x].GetChild(0).gameObject);
             }
         }
 
         for (int i = 0; i < cardsToIns.Count; i++)
         {
+            Debug.Log("CreateCardsForVotingDiscard Instantiate " + i + "," + cardsToIns[i].cardTitle);
+
             GameObject a = GameObject.Instantiate(CardManager.instance.card, new Vector3(0, 0, 0), Quaternion.identity);
             a.SetActive(true);
+            if (CardGameManagerUI.instance.VotingCardHolders[i].childCount > 0)
+            {
+                Debug.Log("CreateCardsForVotingDiscard inner destroy");
+                DestroyImmediate(CardGameManagerUI.instance.VotingCardHolders[i].GetChild(0).gameObject);
+            }
             a.transform.SetParent(CardGameManagerUI.instance.VotingCardHolders[i]);
 
             a.GetComponent<CardUI>().Initialize(cardsToIns[i]);
@@ -177,7 +188,7 @@ public class CardManager : MonoBehaviour
         }
         votingCardsCOunt = PlayerManager.instance.ReceivedCardsFromAllPlayersAfterRanking.Count;
         CardGameManagerUI.instance.CardsRemaining.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = votingCardsCOunt.ToString();
-
+        haveWeCreatedCardsForVoting = true;
     }
 
     public void UpdateRemainingDeckUI()
