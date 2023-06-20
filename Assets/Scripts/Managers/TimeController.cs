@@ -10,6 +10,7 @@ public class TimeController : MonoBehaviour
 {
     public static TimeController instance;
 
+    public TextMeshProUGUI timeLimitText;
     public TextMeshProUGUI timeCounter;
     public TextMeshProUGUI maxTimeLimit;
 
@@ -64,7 +65,15 @@ public class TimeController : MonoBehaviour
             timeCounter.text = "<font-weight=900>3:00:00";
         }
 
-        maxTimeLimit.text = "Reference Duration: "+timeLimitType;
+        if(timeLimitType == "No Time Limit")
+        {
+            maxTimeLimit.text = "Untimed Session";
+        }
+        else
+        {
+            timeLimitText.text = "<font-weight=900>SESSION TIME LEFT";
+            maxTimeLimit.text = timeLimitType +" session";
+        }
     }
 
     public void BeginTimer()
