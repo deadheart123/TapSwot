@@ -284,6 +284,14 @@ public class CardGameManagerUI : MonoBehaviour
         NewCardSlotButtons[4].SetActive(false);
     }
     private bool rankingRound = false;
+
+
+    public GameObject HelpBoxVoteInitial;
+    public GameObject HelpBoxVoteDone;
+    public GameObject HelpBoxFeedbackOpener;
+    public GameObject HelpBoxFeedback1;
+    public GameObject HelpBoxFeedback2;
+
     public void UpdateCurrentRoundText()
     {
         GameStateEnum currentGameState = CardGameManager.instance.GetGameState();
@@ -371,6 +379,7 @@ public class CardGameManagerUI : MonoBehaviour
                 CardManager.instance.CreateCardsForVotingDiscard();
                 break;
             case GameStateEnum.ROUND_FOUR:
+                HelpBoxVoteInitial.SetActive(true);
                 DiscardedInVoting.SetActive(false);
                 Prompt.SetActive(false);
                 CardWithLabel.SetActive(false);
@@ -437,16 +446,25 @@ public class CardGameManagerUI : MonoBehaviour
         string fileName = "TAPswot" + date;
         fileName = fileName.Replace("-", "_");
         print(fileName);
-        StartCoroutine(CutSpriteFromScreen(fileName));
+
+        NativeFileBrowser.GetFilePathToSave("png", fileName,
+            (path) => {
+                if (path != string.Empty)
+                {
+                    HelpBoxFeedback1.SetActive(false);
+                    StartCoroutine(CutSpriteFromScreen(path, fileName));
+                }
+            },
+            UnityEngine.Debug.LogException);
     }
 
     //Object To Screenshot
     [SerializeField] private RectTransform _objToScreenshot;
-    private IEnumerator CutSpriteFromScreen(string fileName)
+    private IEnumerator CutSpriteFromScreen(string savePath, string fileName)
     {
-        fileName = new string(fileName.ToCharArray()
-        .Where(c => !Char.IsWhiteSpace(c))
-        .ToArray());
+        //fileName = new string(fileName.ToCharArray()
+        //.Where(c => !Char.IsWhiteSpace(c))
+        //.ToArray());
 
         //Code will throw error at runtime if this is removed
         yield return new WaitForEndOfFrame();
@@ -467,11 +485,18 @@ public class CardGameManagerUI : MonoBehaviour
         Debug.Log("Texture Width : " + width + " Texture Height : " + height);
         //Save the screenshot to disk
         byte[] byteArray = ss.EncodeToPNG();
-        string savePath = Application.streamingAssetsPath + "/" + fileName + ".png";
+        //string savePath = Application.streamingAssetsPath + "/" + fileName + ".png";
         System.IO.File.WriteAllBytes(savePath, byteArray);
         Debug.Log("Screenshot Path : " + savePath);
         // Destroy texture to avoid memory leaks
         Destroy(ss);
+
+        HelpBoxFeedback2.SetActive(true);
+    }
+
+    public void OpenFeedbackURL()
+    {
+        Application.OpenURL("https://uwe.eu.qualtrics.com/jfe/form/SV_07Gm91QgdXwI1QG");
     }
 
     public void OpenFolder()

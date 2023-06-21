@@ -131,6 +131,7 @@ public class PlayerManager : MonoBehaviour
     {
         string playerID = myPlayer.playerID.ToString();
         gameObject.GetComponent<PhotonView>().RPC("ReceiveSkipNewCard", RpcTarget.All, playerID);
+        CardGameManagerUI.instance.HelpBoxVoteDone.SetActive(true);
     }
 
     public void SendYesOnLastStage()
@@ -143,18 +144,37 @@ public class PlayerManager : MonoBehaviour
     {
         string playerID = myPlayer.playerID.ToString();
         gameObject.GetComponent<PhotonView>().RPC("LastStageDecision", RpcTarget.All, "No", playerID);
+        CardGameManagerUI.instance.HelpBoxVoteDone.SetActive(true);
     }
+
+    public Dictionary<string,string> allPlayerDecisions = new Dictionary<string,string>();
 
     [PunRPC]
     public void LastStageDecision(string decision, string playerID)
     {
-        foreach (Player p in currentPlayersList)
+        allPlayerDecisions.Add(playerID, decision);
+
+        if(allPlayerDecisions.Count == currentPlayersList.Count)
         {
-            if (p.playerID.ToString() == playerID)
+            foreach(KeyValuePair<string,string> kvp in allPlayerDecisions)
             {
-                p.SetYesNoText(decision);
+                foreach (Player p in currentPlayersList)
+                {
+                    if (p.playerID.ToString() == kvp.Key)
+                    {
+                        p.SetYesNoText(decision);
+                    }
+                }
             }
+            StartCoroutine(ShowTakeScreenShotButton());
         }
+    }
+
+    private IEnumerator ShowTakeScreenShotButton()
+    {
+        yield return new WaitForSeconds(2f);
+        CardGameManagerUI.instance.HelpBoxFeedbackOpener.SetActive(true);
+        CardGameManagerUI.instance.HelpBoxFeedback1.SetActive(true);
     }
 
         [PunRPC]
