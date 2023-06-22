@@ -131,13 +131,13 @@ public class PlayerManager : MonoBehaviour
     {
         string playerID = myPlayer.playerID.ToString();
         gameObject.GetComponent<PhotonView>().RPC("ReceiveSkipNewCard", RpcTarget.All, playerID);
-        CardGameManagerUI.instance.HelpBoxVoteDone.SetActive(true);
     }
 
     public void SendYesOnLastStage()
     {
         string playerID = myPlayer.playerID.ToString();
         gameObject.GetComponent<PhotonView>().RPC("LastStageDecision", RpcTarget.All, "Yes", playerID);
+        CardGameManagerUI.instance.HelpBoxVoteDone.SetActive(true);
     }
 
     public void SendNoOnLastStage()
