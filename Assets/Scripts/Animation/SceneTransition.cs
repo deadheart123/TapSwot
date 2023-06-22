@@ -72,7 +72,7 @@ public class SceneTransition : MonoBehaviour
     {
         DOTween.KillAll();
         bg.anchoredPosition = new Vector2(0,0f);
-        mascot.anchoredPosition = new Vector2(-1120f,0f);
+        mascot.anchoredPosition = new Vector2(-1200f,0f);
         iconS.color = new Color32(255,255,255,255);
         iconW.color = new Color32(255,255,255,255);
         iconO.color = new Color32(255,255,255,255);
@@ -85,7 +85,8 @@ public class SceneTransition : MonoBehaviour
         iconO.DOFade(0f,0.25f);
         iconT.DOFade(0f,0.25f);
         yield return new WaitForSeconds(0.5f);
-        yield return null;        
+        yield return null;
+
     }
 
 

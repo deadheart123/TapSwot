@@ -304,8 +304,8 @@ public class PlayerManager : MonoBehaviour
             remainingCardsID.Add(so.cardId.ToString());
         }
         //update all clients with the remaining cards
-        gameObject.GetComponent<PhotonView>().RPC("ReceiveRemainingShuffleCards", RpcTarget.All, (object)remainingCardsID.ToArray());
-
+        gameObject.GetComponent<PhotonView>().RPC("ReceiveRemainingShuffleCards", RpcTarget.Others, (object)remainingCardsID.ToArray());
+        ReceiveRemainingShuffleCards(remainingCardsID.ToArray());
         //Start First Players Turn here
         //SendPlayerTurnUpdate("0", "1");
         CardGameManager.instance.UpdateTurnFirstTime();

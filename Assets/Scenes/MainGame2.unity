@@ -3391,8 +3391,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 10, y: 60.32193}
-  m_SizeDelta: {x: -20, y: -195.1801}
+  m_AnchoredPosition: {x: 10, y: -10.838989}
+  m_SizeDelta: {x: -20, y: -52.859}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &167557979
 MonoBehaviour:
@@ -6501,8 +6501,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.0881042, y: -0.000011444092}
-  m_SizeDelta: {x: -28.2906, y: -0.000041962}
+  m_AnchoredPosition: {x: 6.528595, y: -0.000011444092}
+  m_SizeDelta: {x: -13.057, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &244212049
 MonoBehaviour:
@@ -6551,10 +6551,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22
+  m_fontSize: 23.8
   m_fontSizeBase: 22
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -6587,7 +6587,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -1.2333069, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -13782,7 +13782,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.6511993, y: -0.8548584}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 313.3, y: 162.71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &515810536
@@ -13948,8 +13948,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -170.4}
-  m_SizeDelta: {x: 400, y: 30}
+  m_AnchoredPosition: {x: 0, y: -175}
+  m_SizeDelta: {x: 320.6, y: 30}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &525349629
 GameObject:
@@ -22416,7 +22416,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -0.000030517578, y: 0, z: 0, w: 0}
+  m_margin: {x: 3.6999207, y: 0, z: 3.6999817, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -24648,10 +24648,10 @@ RectTransform:
   m_Father: {fileID: 396764703}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 320.6048, y: 164.4196}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -938, y: 515}
+  m_SizeDelta: {x: 320.60474, y: 164.41962}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1005747418
 GameObject:
@@ -35307,10 +35307,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 64
+  m_fontSize: 65.85
   m_fontSizeBase: 64
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
@@ -44896,10 +44896,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
+  m_fontSize: 23.25
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
@@ -54638,6 +54638,14 @@ PrefabInstance:
     - target: {fileID: 4087249787859065104, guid: 9a8061a980b626f4b8691ab271ccd10f, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4087249787937353123, guid: 9a8061a980b626f4b8691ab271ccd10f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4087249787937353123, guid: 9a8061a980b626f4b8691ab271ccd10f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7091766853388447595, guid: 9a8061a980b626f4b8691ab271ccd10f, type: 3}
       propertyPath: m_Pivot.x
