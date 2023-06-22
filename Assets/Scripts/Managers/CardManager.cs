@@ -45,6 +45,23 @@ public class CardManager : MonoBehaviour
         //CardGameManager.instance.PlayerTookTurn();
     }
 
+    //private IEnumerator SendRemoveAllRemainingCards()
+    //{
+    //    if (mainDeckRect.transform.childCount > 0)
+    //    {
+    //        PlayerManager.instance.Send_DisableAllDrags();
+    //        CardGameManagerUI.instance.DisableAllHelperEmojisOfRoundOne();
+
+    //        foreach (CardSO so in remainingCards.ToList())
+    //        {
+    //            yield return new WaitForSeconds(0.25f);
+    //            string cardID = so.cardId.ToString();
+    //            PlayerManager.instance.Send_AddToDiscardedCards(cardID);
+    //            PlayerManager.instance.Send_RemoveFromRemainingCards(cardID);
+    //        }
+
+    //    }
+    //}
     private IEnumerator SendRemoveAllRemainingCards()
     {
         if (mainDeckRect.transform.childCount > 0)
@@ -52,13 +69,16 @@ public class CardManager : MonoBehaviour
             PlayerManager.instance.Send_DisableAllDrags();
             CardGameManagerUI.instance.DisableAllHelperEmojisOfRoundOne();
 
-            foreach (CardSO so in remainingCards.ToList())
+            //foreach (CardSO so in remainingCards.ToList())
+
+            List<CardSO> cardsTemp = remainingCards.Select(c => new CardSO(c)).ToList();
+            for (int i = 0; i < cardsTemp.Count; i++)
             {
                 yield return new WaitForSeconds(0.25f);
-                string cardID = so.cardId.ToString();
+                string cardID = cardsTemp[i].cardId.ToString();
                 PlayerManager.instance.Send_AddToDiscardedCards(cardID);
-                PlayerManager.instance.Send_RemoveFromRemainingCards(cardID);                
-            }   
+                PlayerManager.instance.Send_RemoveFromRemainingCards(cardID);
+            }
         }
     }
 
@@ -99,14 +119,18 @@ public class CardManager : MonoBehaviour
 
     public void RemoveCardFromRemainingDeck(CardSO c)
     {
-        foreach(CardSO so in remainingCards.ToList())
-        {
-            if(so.cardId == c.cardId)
-            {
-                remainingCards.Remove(so);
-                Debug.Log("[UpdateDiscardedCards] remainingCards length" + remainingCards.Count);
-            }
-        }        
+        Debug.LogWarning("[RemoveCardFromRemainingDeck] remainingCards id" + c.cardId);
+        remainingCards.Remove(c);
+        Debug.LogWarning("[RemoveCardFromRemainingDeck] after remainingCards length and id" + remainingCards.Count + "," + c.cardId);
+
+        //foreach(CardSO so in remainingCards.ToList())
+        //{
+        //    if(so.cardId == c.cardId)
+        //    {
+        //        remainingCards.Remove(so);
+        //        Debug.Log("[UpdateDiscardedCards] remainingCards length" + remainingCards.Count);
+        //    }
+        //}        
     }
 
     public void UpdateDeckFromData(List<CardSO> cards)

@@ -173,11 +173,12 @@ public class PlayerManager : MonoBehaviour
     private IEnumerator ShowTakeScreenShotButton()
     {
         yield return new WaitForSeconds(2f);
+        CardGameManagerUI.instance.HelpBoxVoteDone.SetActive(false);
         CardGameManagerUI.instance.HelpBoxFeedbackOpener.SetActive(true);
         CardGameManagerUI.instance.HelpBoxFeedback1.SetActive(true);
     }
 
-        [PunRPC]
+    [PunRPC]
     public void ReceiveNewCard(string playerID, string value, string cardTitle, string cardSubTitle, string cardDesc, string cardSlotToReplace)
     {
         NewCardPlayersTurn.Add(playerID);
