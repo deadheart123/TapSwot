@@ -26,7 +26,7 @@ public class CreateAndJoin : MonoBehaviourPunCallbacks
     public GameObject LobbyWaitingWindow;
     public GameObject StartGameBtn;
     public GameObject WaitForHost;
-
+    public GameObject Hostmsg;
     [SerializeField]
     private Transform _content;
 
@@ -49,12 +49,23 @@ public class CreateAndJoin : MonoBehaviourPunCallbacks
      
     }
 
+    private void Update()
+    {
+        if (PhotonNetwork.CurrentRoom.PlayerCount ==1)
+        {
+            Hostmsg.SetActive(true);
+        }
+        else
+        {
+            Hostmsg.SetActive(false);
+        }
+    }
     //private void Awake()
     //{
     //    if (instance == null)
     //    {
     //        instance = this;
-          
+
     //    }
     //    else
     //    {
@@ -64,7 +75,7 @@ public class CreateAndJoin : MonoBehaviourPunCallbacks
     //    DontDestroyOnLoad(gameObject);
 
     //}
-    # endregion 
+    #endregion
 
     #region CREATE AND JOIN ROOM PUN CALLBACKS 
 
@@ -261,7 +272,7 @@ public class CreateAndJoin : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsMasterClient)
         {
             //GetComponent<PhotonView>().RPC("LoadLevel", RpcTarget.AllBuffered);
-            if (PhotonNetwork.CurrentRoom.PlayerCount > 1) // To check the count of players in the room is 4 including the host
+            if (PhotonNetwork.CurrentRoom.PlayerCount >= 1) // To check the count of players in the room is 4 including the host
             {
                 { 
                     GetComponent<PhotonView>().RPC("LoadLevel", RpcTarget.AllBuffered);
