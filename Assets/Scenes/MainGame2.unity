@@ -828,7 +828,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Judge the products.
+  m_text: Judge the product
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 262b2635ce125ae4d9d2498c257e720d, type: 2}
   m_sharedMaterial: {fileID: -8059178355782199316, guid: 262b2635ce125ae4d9d2498c257e720d, type: 2}
@@ -3917,9 +3917,9 @@ MonoBehaviour:
 
     Stephen Cragg
 
-    Alicia Wallis
+    Daniela Paddeu
 
-    Daniela Paddeu'
+    Alicia Wallis'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 262b2635ce125ae4d9d2498c257e720d, type: 2}
   m_sharedMaterial: {fileID: -8059178355782199316, guid: 262b2635ce125ae4d9d2498c257e720d, type: 2}
@@ -5217,7 +5217,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: NO, We should NOT try this new approach
+  m_text: NO, we should NOT try this new approach
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 52e243c63bae80647a625c33000ec59f, type: 2}
   m_sharedMaterial: {fileID: 7446309330020250513, guid: 52e243c63bae80647a625c33000ec59f, type: 2}
@@ -12909,9 +12909,9 @@ MonoBehaviour:
 
     Stephen Cragg
 
-    Alicia Wallis
+    Daniela Paddeu
 
-    Daniela Paddeu'
+    Alicia Wallis'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 262b2635ce125ae4d9d2498c257e720d, type: 2}
   m_sharedMaterial: {fileID: -8059178355782199316, guid: 262b2635ce125ae4d9d2498c257e720d, type: 2}
@@ -14155,9 +14155,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <font-weight=700>In this stage you can save one card from discard. When
+  m_text: <font-weight=700>In this step, you can save one card from discard. When
     it's you turn select a card from below and click on 'keep card' above to swap.
-    You can also choose to skip the turn.
+    You can also choose to skip this step.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 262b2635ce125ae4d9d2498c257e720d, type: 2}
   m_sharedMaterial: {fileID: -8059178355782199316, guid: 262b2635ce125ae4d9d2498c257e720d, type: 2}
@@ -16160,7 +16160,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: YES, We should try and use this new approach.
+  m_text: YES, we should try and use this new approach
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 52e243c63bae80647a625c33000ec59f, type: 2}
   m_sharedMaterial: {fileID: 7446309330020250513, guid: 52e243c63bae80647a625c33000ec59f, type: 2}
@@ -25839,8 +25839,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -32, y: 109}
-  m_SizeDelta: {x: 930.6, y: 305.8508}
+  m_AnchoredPosition: {x: 11.1194, y: -0.7587}
+  m_SizeDelta: {x: 1016.8389, y: 525.3681}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1028601836
 MonoBehaviour:
@@ -25862,13 +25862,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'On your turn, Pick one of your cards that you think is the least important
-    to discard then pick one card from the draw pile or any discarded cards to your
-    hand.
+  m_text: 'On your turn, pick one of your cards that you think is the least important
+    to discard then pick one card from the draw pile or from the discarded cards
+    to add to your hand
 
 
-    At the end of this stage, Each player will have five cards that they
-    feel are most important and we proceed for the next stage of gameplay.
+    At the end of this stage, Each player will have five
+    cards that they feel are most important and we proceed for the next stage of
+    gameplay
 
 '
   m_isRightToLeft: 0
@@ -25897,15 +25898,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48
+  m_fontSize: 32
   m_fontSizeBase: 48
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 12
   m_fontSizeMax: 32
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -25933,7 +25934,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 3.9274483}
+  m_margin: {x: 0, y: 0, z: 0, w: 1.3140717}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -33170,7 +33171,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Congratulations on making this far.\n\nYou will now be presented with
+  m_text: "Congratulations on making it this far.\n\nYou will now be presented with
     the set of final cards which are remaining after the elimination stage. \n\nYou
     will also be provided with a Voting option regarding the outcome of the cards
     and if you find this approach useful to present it to your boss.\n\nThe Vote
@@ -47098,10 +47099,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<font-weight=700>In this stage you can choose to create a new card or
-    choose to skip. \nTo create a new card click on one of the buttons showing on
-    top of your cards. On saving the card, existing card will be replaced with the
-    new card. \nIf you do not want to create a new card click on skip button below.\n</font-weight>"
+  m_text: '<font-weight=700>You can now choose create your own new card to replace
+    one of those in your hand, or you can skip this option. On saving your new card,
+    the existing card will be replaced with this card.
+
+
+    If you do not want to
+    create a new card click on skip button below.
+
+    </font-weight>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 262b2635ce125ae4d9d2498c257e720d, type: 2}
   m_sharedMaterial: {fileID: -8059178355782199316, guid: 262b2635ce125ae4d9d2498c257e720d, type: 2}
@@ -49747,8 +49753,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '<font-weight=500>Each player take turns to discard and pick up one card
-    until all cards in the pack have been used.
+  m_text: '<font-weight=500>Players take turns to discard and pick up one card until
+    all cards in the pack have been used.
 
 '
   m_isRightToLeft: 0
@@ -50029,7 +50035,7 @@ MonoBehaviour:
 
     In
     the next step, you will be given an option to provide your valuable feedback
-    for the game session.
+    from the game session.
 
 '
   m_isRightToLeft: 0

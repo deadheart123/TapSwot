@@ -49,9 +49,9 @@ public class CreateAndJoin : MonoBehaviourPunCallbacks
      
     }
 
-    private void Update()
+    private void PlayerCheck()
     {
-        if (PhotonNetwork.CurrentRoom.PlayerCount ==1)
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
         {
             Hostmsg.SetActive(true);
         }
@@ -60,6 +60,7 @@ public class CreateAndJoin : MonoBehaviourPunCallbacks
             Hostmsg.SetActive(false);
         }
     }
+    
     //private void Awake()
     //{
     //    if (instance == null)
@@ -122,6 +123,7 @@ public class CreateAndJoin : MonoBehaviourPunCallbacks
         {
             Debug.Log("Multiplayer Lobby name cannot be blank");
         }
+        
 
     }
 
@@ -154,7 +156,7 @@ public class CreateAndJoin : MonoBehaviourPunCallbacks
             WaitForHost.SetActive(true);
         }
 
-
+        PlayerCheck();
 
         //CleanList();
 
@@ -238,6 +240,7 @@ public class CreateAndJoin : MonoBehaviourPunCallbacks
             WaitForHost.SetActive(true);
         }
 
+        PlayerCheck();
     }
 
     //public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
