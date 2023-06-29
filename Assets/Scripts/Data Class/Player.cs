@@ -416,11 +416,19 @@ public class Player : MonoBehaviour
     public GameObject YesNoPanel;
     public TMPro.TextMeshProUGUI YesNOText;
 
-    public void SetYesNoText(string decisionValue)
+    public void EnableYesNo()
     {
         if (YesNoPanel != null)
         {
             YesNoPanel.SetActive(true);
+        }
+    }
+
+    public void SetYesNoText(string decisionValue)
+    {
+        if (YesNoPanel != null)
+        {
+            YesNoPanel.SetActive(false);
         }
         if (decisionValue == "Yes")
         {

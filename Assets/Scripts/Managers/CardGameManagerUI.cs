@@ -2,9 +2,6 @@ using Photon.Pun;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UI.Extensions;
@@ -299,9 +296,14 @@ public class CardGameManagerUI : MonoBehaviour
         {
             case GameStateEnum.SETUP:
                 CurrentRoundText.text = "Stage 1";
+                CurrentObjective.text = "";
+                CurrentStageDescription.text = "";
                 break;
             case GameStateEnum.ROUND_ONE:
                 CurrentRoundText.text = "Stage 2";//card selection from remaining
+                CurrentObjective.text = "Judge the product";
+                CurrentStageDescription.text = "<font-weight=500>Players take turns to discard and pick up one card until all cards in the pack have been used.";
+
                 break;
             case GameStateEnum.ROUND_TWO:
                 NewCardHelper.SetActive(true);
@@ -328,6 +330,8 @@ public class CardGameManagerUI : MonoBehaviour
                 NewCardSkipButton.SetActive(false);
                 NewCardDialog.SetActive(false);
                 CurrentRoundText.text = "Stage 3";//ranking + select from pile
+                CurrentObjective.text = "Shortlist the product reviews";
+                CurrentStageDescription.text = "Each player can introduce a new card, then ranks their cards, and then proceeds with the other players to identify the five most important cards between all the players.";
                 cardRankingAndActions_1.SetActive(true);
                 remaingingDeckGameObject.SetActive(false); //rankin + select from discarded pile
                 rankingRound = true;
@@ -348,7 +352,7 @@ public class CardGameManagerUI : MonoBehaviour
                 break;
             case GameStateEnum.ROUND_THREE:
                 rankingRound = false;
-                CurrentRoundText.text = "Stage 4"; // joker(new card) + voting
+               // CurrentRoundText.text = "Stage 4"; // joker(new card) + voting
 
                 //disable discarded or destroy all cards in discarded
                 //disable player cards
@@ -383,7 +387,7 @@ public class CardGameManagerUI : MonoBehaviour
                 DiscardedInVoting.SetActive(false);
                 Prompt.SetActive(false);
                 CardWithLabel.SetActive(false);
-                CurrentRoundText.text = "Stage 5 & 6";
+               // CurrentRoundText.text = "3";
 
                 StageThreeItsYourTurn.SetActive(false);
                 StageThreeWaitForTurn.SetActive(false);

@@ -154,21 +154,24 @@ public class PlayerManager : MonoBehaviour
     {
         allPlayerDecisions.Add(playerID, decision);
 
-        if(allPlayerDecisions.Count == currentPlayersList.Count)
+        foreach (Player p in currentPlayersList)
         {
-            foreach(KeyValuePair<string,string> kvp in allPlayerDecisions)
+            if (p.playerID.ToString() == playerID)
             {
-                foreach (Player p in currentPlayersList)
-                {
-                    if (p.playerID.ToString() == kvp.Key)
-                    {
-                        p.SetYesNoText(decision);
-                    }
-                }
+                p.SetYesNoText(decision);
+            }
+        }
+
+        if (allPlayerDecisions.Count == currentPlayersList.Count)
+        {
+            foreach (Player p in currentPlayersList)
+            {
+                p.EnableYesNo();
             }
             StartCoroutine(ShowTakeScreenShotButton());
         }
     }
+
 
     private IEnumerator ShowTakeScreenShotButton()
     {
