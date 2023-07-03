@@ -387,7 +387,9 @@ public class CardGameManagerUI : MonoBehaviour
                 DiscardedInVoting.SetActive(false);
                 Prompt.SetActive(false);
                 CardWithLabel.SetActive(false);
-               // CurrentRoundText.text = "3";
+                CurrentRoundText.text = "Stage 4";//ranking + select from pile
+                CurrentObjective.text = "Are we buying?";
+                CurrentStageDescription.text = "Each player votes ‘yes’ or ‘no’ to whether or not to recommend Triple Access Planning is adopted. The players can then if they wish consider what their overall decision would be.";
 
                 StageThreeItsYourTurn.SetActive(false);
                 StageThreeWaitForTurn.SetActive(false);
